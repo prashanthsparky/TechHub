@@ -1,0 +1,82 @@
+body {
+    margin: 0; /* Remove default browser margins */
+    overflow: hidden; /* Hide scrollbars */
+    font-family: 'Arial', sans-serif; /* Set font family for better consistency */
+  }
+  
+  #home {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5, 4, 46, 0.7)), url("https://res.cloudinary.com/techhub-ncet/image/upload/v1737949553/bco7yqnlvywpwkfqfgqo.jpg");
+    background-size: cover;
+    background-position: center center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #fff; /* Set text color for better readability */
+  }
+  
+  #home h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #E7FFDD;
+  }
+  
+  #home p {
+    font-size: 1.2rem;
+    max-width: 600px; /* Limit paragraph width for better readability */
+    text-align: center;
+    margin-bottom: 30px;
+  }
+  
+  #home a
+{
+	text-decoration: none;
+	font-size: 0.9rem;
+	padding: 13px 35px;
+	background-color: #fff;
+	font-weight: 600;
+	border-radius: 5px;
+}
+
+#home a.blue
+{
+	color: #E7FFDD;
+	background: rgb(0, 0, 0);
+	transition: 0.3s ease;
+}
+
+#home a.blue:hover
+{
+	color: rgb(21, 21, 100);
+	background: #fff;
+}
+
+#home a.yellow
+{
+	color: #E7FFDD;
+	background: rgb(144, 205, 119);
+	transition: 0.3s ease;
+}
+
+#home a.yellow:hover
+{
+	color: rgb(21, 21, 100);
+	background: #E7FFDD;
+}
+  
+  /* Responsive adjustments */
+  @media (max-width: 600px) {
+    #home h2 {
+      font-size: 2rem;
+    }
+  
+    #home p {
+      font-size: 1rem;
+      max-width: 90%;
+    }
+  }

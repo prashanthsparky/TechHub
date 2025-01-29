@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Provide Feedback</h2>
+
+<!-- Faculty Selection -->
+<form method="GET" action="{{ url_for('student_dashboard') }}">
+    <label for="faculty">Select Faculty:</label>
+    <select name="faculty" id="faculty" onchange="this.form.submit()" required>
+        <option value="">--Select Faculty--</option>
+        {% for faculty in faculties %}
+            <option value="{{ faculty }}" {% if selected_faculty == faculty %}selected{% endif %}>{{ faculty }}</option>
+        {% endfor %}
+    </select>
+</form>
+
+<!-- Feedback Form with Dynamic Questions -->
+{% if selected_faculty and questions %}
+    <form method="POST" action="{{ url_for('student_dashboard') }}">
+        <input type="hidden" name="faculty" value="{{ selected_faculty }}">
+
+        <div class="questions">
+            {% for question in questions %}
+                <div class="question-item">
+                    <p>{{ question["question"] }}</p>
+                    <div class="rating">
+                        {% for rating in range(1, 6) %}
+                            <label>
+                                <input type="radio" name="response-{{ question['_id'] }}" value="{{ rating }}" required>
+                                {{ rating }}
+                            </label>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Additional Comments Section -->
+        <label for="comments">Comments:</label>
+        <textarea id="comments" name="comments" rows="5"></textarea><br><br>
+
+        <button type="submit">Submit Feedback</button>
+    </form>
+{% endif %}
+{% endblock %}

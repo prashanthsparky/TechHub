@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Link to the custom CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/feedback_dashboard.css') }}">
+
+<div class="feedback-container">
+    <h2>Your Feedback Dashboard</h2>
+
+    <!-- Display Feedback Responses -->
+    {% if feedback_data %}
+        <h3>Feedback Received:</h3>
+        <ul>
+            {% for feedback in feedback_data["positive_feedback"] %}
+                <li>
+                    <div class="feedback-details">
+                        <strong>Student:</strong> {{ feedback.student }} <br>
+                        <strong>Average Rating:</strong> {{ feedback.avg_rating }} / 5 <br>
+                        <strong>Comments:</strong> {{ feedback.comment }} <br>
+                        <strong>Submitted At:</strong> {{ feedback.submitted_at }} <br>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="feedback-stats">
+            <div>
+                <h4>Total Positive Feedback</h4>
+                <p>{{ feedback_data["positive_count"] }}</p>
+            </div>
+            <div>
+                <h4>Total Negative Feedback</h4>
+                <p>{{ feedback_data["negative_count"] }}</p>
+            </div>
+        </div>
+    {% else %}
+        <p>No feedback received yet.</p>
+    {% endif %}
+    
+    <!-- Download Feedback Button -->
+    <a href="{{ url_for('download_feedback') }}">
+        <button>Download Feedback (Excel)</button>
+    </a>
+
+    <!-- Visual Analysis (Charts) -->
+    <div class="chart-container">
+        <h3>Visual Feedback Analysis</h3>
+        <div>
+            <canvas id="feedbackChart"></canvas>
+        </div>
+
+        <!-- Positive vs Negative Feedback Chart -->
+        <h3>Positive vs Negative Feedback</h3>
+        <div>
+            <canvas id="positiveNegativeChart"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    // Feedback Chart (Average Rating)
+    var ctx = document.getElementById('feedbackChart').getContext('2d');
+    var feedbackChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Feedback'],
+            datasets: [{
+                label: 'Average Rating',
+                data: [{{ feedback_data["avg_rating"] }}],
+                backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                borderColor: 'rgba(54, 162, 235, 1)',
+                borderWidth: 1
+            }]
+        }
+    });
+
+    // Positive vs Negative Feedback Chart
+    var ctx2 = document.getElementById('positiveNegativeChart').getContext('2d');
+    var positiveNegativeChart = new Chart(ctx2, {
+        type: 'pie',
+        data: {
+            labels: ['Positive Feedback', 'Negative Feedback'],
+            datasets: [{
+                data: [{{ feedback_data["positive_count"] }}, {{ feedback_data["negative_count"] }}],
+                backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+                borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+                borderWidth: 1
+            }]
+        }
+    });
+</script>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<section id="home">
+  <h2>Welcome to the Student Feedback System</h2>
+  <p>
+    Your voice matters! This platform allows students to provide valuable feedback on faculty to help improve the quality of education.
+  </p>
+  <div class="btn">
+    <a href="{{ url_for('signup') }}" class="blue">Signup</a>
+    <a href="{{ url_for('login') }}" class="yellow">Login</a>
+  </div>
+</section>
+
+{% endblock %}

@@ -1,0 +1,47 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Feedback System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <nav>
+      <a href="{{ url_for('home') }}">
+        <img 
+            src="https://res.cloudinary.com/techhub-ncet/image/upload/v1737949559/bdfdtbcfqszyjy2qlkvu.jpg" class="logo" 
+            alt="Logo" 
+        >
+    </a>
+
+       <div class="nav-links">
+            <a href="{{ url_for('home') }}">Home</a>
+            {% if session.get("role") == "faculty" %}
+                <a href="{{ url_for('faculty_dashboard') }}">Dashboard</a>
+                <a href="{{ url_for('logout') }}">Logout</a>
+            {% else %}
+                <a href="{{ url_for('signup') }}">Login</a>
+                <a href="{{ url_for('signup') }}"></a>
+            {% endif %}
+        </div>
+    </nav>
+
+    <div class="container">
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul class="flashes">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% endwith %}
+        {% block content %}{% endblock %}
+    </div>
+
+</body>
+</html>

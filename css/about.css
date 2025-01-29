@@ -1,0 +1,340 @@
+
+#about-home
+{
+	background-image: linear-gradient(rgba(9, 5, 54, 0.3), rgba(5,4,46,0.7)), url("../img/cover1.jpg");
+	width: 100%;
+	height: 60vh;
+	background-size: cover;
+	background-position: center center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	padding-top: 40px;
+}
+
+#about-home h2
+{
+	color: #E7FFDD;
+	font-size: 2.2rem;
+	letter-spacing: 1px;
+}
+
+#about-container
+{
+	display: flex;
+	align-items: center;
+	padding: 8vw 8vw 2vw 8vw;
+}
+
+#about-container .about-img
+{
+	width: 60%;
+	padding-right: 60px;
+}
+
+#about-container .about-img img
+{
+	width: 100%;
+}
+
+#about-container .about-text
+{
+	width: 40%;
+}
+
+#about-container .about-text h2
+{
+	color: #29303B;
+	padding-bottom: 15px;
+}
+
+#about-container .about-text p
+{
+	color: #686F7A;
+	font-weight: 301;
+}
+
+#about-container .about-text .about-fe
+{
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	margin-top: 30px;
+}
+
+#about-container .about-text .about-fe img
+{
+	width: 50px;
+	background-size: cover;
+	background-position: center;
+	margin-right: 20px;
+}
+
+#about-container .about-text .about-fe .fe-text
+{
+	width: 90%;
+}
+
+#about-container .about-text .about-fe .fe-text h5
+{
+	font-size: 16px;
+	color: #29303B;
+}
+
+
+/*------------- TECH HUB Features section styling start -------------*/
+
+#techFeatures {
+    padding: 5vw 8vw;
+    text-align: center;
+    background: #f9f9f9;
+    color: #333;
+}
+
+#techFeatures h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #222;
+}
+
+
+#techFeatures h3 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 2rem;
+}
+
+
+.slider-container {
+    position: relative;
+    overflow: hidden;
+    width: 90%;
+    margin: auto;
+    background: #edf1f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+.slider-wrapper {
+    display: flex;
+    transition: transform 0.5s ease;
+    width: 100%;
+}
+
+.fea-base {
+    display: flex;
+    gap: 2rem;
+    padding: 2rem 0;
+    width: 100%;
+}
+
+.fea-box {
+    flex: 0 0 auto; 
+    width: 100%;     
+    max-width: calc(120% / 4); /* 4 items per row */
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 1rem;
+    border-radius: 8px;
+}
+
+.fea-box:last-child {
+    margin-right: 0; /* Avoid extra margin for the last item */
+}
+
+.fea-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+    background: #f7f7f7;
+}
+
+.fea-box i {
+    font-size: 2rem;
+    color: #007bff;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+}
+
+.fea-box:hover i {
+    color: #0056b3;
+}
+
+.fea-box h3 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #444;
+}
+
+.short-content {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 1rem;
+	text-align: justify;
+}
+
+.full-content {
+    font-size: 1rem;
+	display: none;
+    color: #666;
+    margin-bottom: 1rem;
+	text-align: justify;
+}
+
+.read-more-btn {
+    padding: 0.5rem 1rem;
+    border: 1px solid black;
+    background: transparent;
+    color: black;;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+	text-align: left;
+	display: block; 
+	margin-left: 0;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.read-more-btn:hover {
+	background: rgb(74, 74, 80);
+    color: #fff;
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgb(144, 205, 119);
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.prev:hover, .next:hover {
+    background: #0056b3;
+    transform: scale(1.1);
+}
+
+.prev {
+    left: 15px;
+}
+
+.next {
+    right: 15px;
+}
+
+
+/*------------- Responsive adjustments -------------*/
+@media (max-width: 768px) {
+    .slider-wrapper {
+        gap: 20px;
+    }
+
+    .fea-box {
+        padding: 1rem;
+    }
+
+    .prev, .next {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+}
+
+/*------------- TECH HUB Features section styling end -------------*/
+
+
+
+/*------------------- Trust section starts from here ---------------*/
+#trust
+{
+	text-align: center;
+	padding: 8vw;
+}
+
+#trust p{
+	color: #333;
+}
+
+#trust .trust-img
+{
+	margin-top: 60px;
+	display: flex;
+	justify-content: space-between;
+}
+
+#trust .trust-img img
+{
+	width: 90px;
+	height: auto;
+}
+/*------------------- Trust section ends from here ---------------*/
+
+
+
+
+/*------------------------------------------------------------------*/
+/*------------------- Tablet screen starts from here ---------------*/
+/*------------------------------------------------------------------*/
+@media screen and (max-width: 768px)
+{
+	#about-container
+	{
+		padding: 8vw 4vw 2vw 4vw;
+	}
+
+	#about-container .about-img
+	{
+		padding-right: 30px;
+	}
+
+	#trust .trust-img img
+	{
+		width: 50px;
+		height: auto;
+	}
+}
+
+
+/*------------------------------------------------------------------*/
+/*------------------- Smartphone screen starts from here ---------------*/
+/*------------------------------------------------------------------*/
+@media screen and (max-width: 475px)
+{
+	#about-container
+	{
+		flex-direction: column-reverse;
+	}
+
+	#about-container .about-img
+	{
+		width: 100%;
+		padding: 0;
+	}
+
+	#about-container .about-text
+	{
+		width: 100%;
+		padding-bottom: 20px;
+	}
+
+	#trust .trust-img
+	{
+		margin-top: 40px;
+		flex-wrap: wrap;
+	}
+
+	#trust .trust-img img
+	{
+		width: 60px;
+		margin: 10px 15px;
+		height: auto;
+	}
+}

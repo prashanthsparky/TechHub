@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Link to the custom CSS -->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/manage_feedback.css') }}">
+
+<div class="feedback-management-container">
+    <h2>Manage Feedback Questions</h2>
+
+    <!-- Form for adding, updating, or deleting questions -->
+    <form method="POST" action="{{ url_for('faculty_home') }}">
+        <label for="question">Question:</label>
+        <input type="text" name="question" id="question" required>
+
+        <label for="new_question">New Question (for update only):</label>
+        <input type="text" name="new_question">
+
+        <label for="action">Action:</label>
+        <select name="action" required>
+            <option value="add">Add</option>
+            <option value="update">Update</option>
+            <option value="delete">Delete</option>
+        </select>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <h3>Your Current Questions:</h3>
+    <ul>
+        {% for question in questions %}
+            <li>{{ question["question"] }}</li>
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock %}

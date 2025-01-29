@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
+
+
+<h2 class="h2-signup" >Signup</h2>
+<form method="POST" action="{{ url_for('signup') }}">
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" required>
+
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required>
+
+    <label for="role">Role:</label>
+    <select name="role" id="role" required>
+        <option value="student">Student</option>
+        <option value="faculty">Faculty</option>
+    </select>
+
+    <button type="submit">Signup</button>
+</form>
+{% endblock %}

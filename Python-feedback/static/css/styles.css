@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,700;1,800;1,900&display=swap');
+
+*
+{
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+body
+{
+	font-family: 'Poppins', sans-serif;
+	background-color: #edf1f2;
+}
+
+
+/* Basic reset and styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body setup for centering content */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #edf1f2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+
+}
+
+/* Navbar (fixed to the top) */
+nav {
+    position: fixed;
+	width: 100%;
+	background-color: #edf1f2;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: .5vw 3vw;
+	box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.15);
+	z-index: 1;
+}
+
+.logo {
+    margin-right: 20px; 
+    height: 50px;
+    width: 150px;
+	cursor: pointer;
+	border-radius: 10px;
+}
+
+
+.nav-links {
+    text-align: right; 
+}
+
+nav a {
+    color: #000;
+    margin: 0 15px;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Centered content container */
+
+/* Title */
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Label styling */
+label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+/* Input, Select, Textarea styles */
+input[type="text"],
+input[type="password"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Button styles */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Flash messages */
+.flashes {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+}
+
+.flashes li {
+    color: red;
+    font-size: 0.9em;
+}
+
+/* Feedback question item styling */
+.question-item {
+    margin-bottom: 15px;
+}
+
+.rating {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.rating label {
+    margin-right: 10px;
+    font-size: 14px;
+}
+
+/* Rating radio buttons */
+.rating input[type="radio"] {
+    margin-right: 5px;
+}
+
+
+.student{
+    margin-top: 5%;
+}
+
+/* Responsive design for mobile view */
+@media screen and (max-width: 600px) {
+    nav a {
+        margin: 0 8px;
+        font-size: 14px;
+    }
+
+    .container {
+        padding: 15px;
+        box-shadow: none;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    label, input[type="text"], input[type="password"], select, button {
+        font-size: 14px;
+    }
+
+    .rating label {
+        font-size: 12px;
+        margin-right: 5px;
+    }
+
+    .rating input[type="radio"] {
+        margin-right: 3px;
+    }
+}
