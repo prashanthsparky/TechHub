@@ -252,6 +252,8 @@ from flask_bcrypt import Bcrypt
 from flask_login import LoginManager, UserMixin, login_user, login_required, current_user, logout_user
 from pymongo import MongoClient
 from bson.objectid import ObjectId
+from flask_mail import Mail, Message
+from itsdangerous import URLSafeTimedSerializer
 import pandas as pd
 from io import BytesIO
 from collections import Counter
@@ -261,6 +263,20 @@ import os
 app = Flask(__name__)
 app.secret_key = os.urandom(24)  # Secret key for session handling
 bcrypt = Bcrypt(app)
+
+# Email Configuration
+app.config["MAIL_SERVER"] = "smtp.gmail.com"
+app.config["MAIL_PORT"] = 587
+app.config["MAIL_USE_TLS"] = True
+app.config["MAIL_USERNAME"] = "iamprashanthb05@gmail.com"  # Replace with your email
+app.config["MAIL_PASSWORD"] = "ljvt wxit nfzw nujk"  # Use App Password if using Gmail
+app.config["MAIL_DEFAULT_SENDER"] = "iamprashanthb05@gmail.com"
+
+mail = Mail(app)
+
+# Secret Key for Token Generation
+app.config["SECRET_KEY"] = "your_secret_key"
+serializer = URLSafeTimedSerializer(app.config["SECRET_KEY"])
 
 # Initialize LoginManager
 login_manager = LoginManager()
@@ -338,6 +354,51 @@ def login():
             flash("Invalid credentials. Please try again.")
             return redirect(url_for("login"))
     return render_template("login.html")
+
+# Forgot Password Route
+@app.route("/forgot_password", methods=["GET", "POST"])
+def forgot_password():
+    if request.method == "POST":
+        email = request.form["email"]
+        user = users_collection.find_one({"username": email})  # Assuming username is email
+
+        if user:
+            token = serializer.dumps(email, salt="password-reset-salt")
+            reset_link = url_for("reset_password", token=token, _external=True)
+
+            # Send Reset Email
+            msg = Message("Password Reset Request", recipients=[email])
+            msg.body = f"Click the link to reset your password: {reset_link}"
+            mail.send(msg)
+
+            flash("A password reset link has been sent to your email.", "success")
+        else:
+            flash("No account found with this email.", "danger")
+
+        return redirect(url_for("forgot_password"))
+
+    return render_template("forgot_password.html")
+
+
+# Reset Password Route
+@app.route("/reset_password/<token>", methods=["GET", "POST"])
+def reset_password(token):
+    try:
+        email = serializer.loads(token, salt="password-reset-salt", max_age=600)  # 10 min expiry
+    except:
+        flash("Invalid or expired token.", "danger")
+        return redirect(url_for("forgot_password"))
+
+    if request.method == "POST":
+        new_password = request.form["password"]
+        hashed_password = bcrypt.generate_password_hash(new_password).decode("utf-8")
+        users_collection.update_one({"username": email}, {"$set": {"password": hashed_password}})
+
+        flash("Your password has been reset successfully. You can now log in.", "success")
+        return redirect(url_for("login"))
+
+    return render_template("reset_password.html", token=token)
+
 
 # Faculty Home Page (Landing page after login)
 @app.route("/faculty/home", methods=["GET", "POST"])

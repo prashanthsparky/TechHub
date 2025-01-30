@@ -3,21 +3,31 @@
 {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/login.css') }}">
 
+<div class="auth-container">
+    <h2 class="h2-signup">Create Your Account</h2>
+    
+    <form method="POST" action="{{ url_for('signup') }}">
+        <div class="form-group">
+            <label for="username">Email:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your email" required>
+        </div>
 
-<h2 class="h2-signup" >Signup</h2>
-<form method="POST" action="{{ url_for('signup') }}">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required>
+        <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password" required>
+        </div>
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required>
+        <div class="form-group">
+            <label for="role">Role:</label>
+            <select name="role" id="role" required>
+                <option value="student">Student</option>
+                <option value="faculty">Faculty</option>
+            </select>
+        </div>
 
-    <label for="role">Role:</label>
-    <select name="role" id="role" required>
-        <option value="student">Student</option>
-        <option value="faculty">Faculty</option>
-    </select>
+        <button type="submit" class="btn">Sign Up</button>
+    </form>
 
-    <button type="submit">Signup</button>
-</form>
+    <p class="redirect-text">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+</div>
 {% endblock %}
