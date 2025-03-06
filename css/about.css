@@ -306,7 +306,7 @@
 /*------------------------------------------------------------------*/
 /*------------------- Smartphone screen starts from here ---------------*/
 /*------------------------------------------------------------------*/
-@media screen and (max-width: 475px)
+/* @media screen and (max-width: 475px)
 {
 	#about-container
 	{
@@ -337,4 +337,49 @@
 		margin: 10px 15px;
 		height: auto;
 	}
+} */
+
+
+
+/* Responsive adjustments for about section */
+@media screen and (max-width: 768px) {
+    #about-container {
+        padding: 8vw 4vw 2vw 4vw;
+    }
+
+    #about-container .about-img {
+        padding-right: 30px;
+    }
+
+    #trust .trust-img img {
+        width: 50px;
+        height: auto;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    #about-container {
+        flex-direction: column-reverse;
+    }
+
+    #about-container .about-img {
+        width: 100%;
+        padding: 0;
+    }
+
+    #about-container .about-text {
+        width: 100%;
+        padding-bottom: 20px;
+    }
+
+    #trust .trust-img {
+        margin-top: 40px;
+        flex-wrap: wrap;
+    }
+
+    #trust .trust-img img {
+        width: 60px;
+        margin: 10px 15px;
+        height: auto;
+    }
 }

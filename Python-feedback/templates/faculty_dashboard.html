@@ -12,7 +12,7 @@
         <h3>Feedback Received:</h3>
         <ul>
             {% for feedback in feedback_data["positive_feedback"] %}
-                <li>
+                <li class="feedback-item">
                     <div class="feedback-details">
                         <strong>Student:</strong> {{ feedback.student }} <br>
                         <strong>Average Rating:</strong> {{ feedback.avg_rating }} / 5 <br>
@@ -22,12 +22,13 @@
                 </li>
             {% endfor %}
         </ul>
+
         <div class="feedback-stats">
-            <div>
+            <div class="stat-item">
                 <h4>Total Positive Feedback</h4>
                 <p>{{ feedback_data["positive_count"] }}</p>
             </div>
-            <div>
+            <div class="stat-item">
                 <h4>Total Negative Feedback</h4>
                 <p>{{ feedback_data["negative_count"] }}</p>
             </div>
@@ -35,23 +36,34 @@
     {% else %}
         <p>No feedback received yet.</p>
     {% endif %}
-    
+
+    <!-- Show Analysis Button -->
+    <button id="showAnalysisBtn" class="show-analysis-btn">Show Analysis</button>
+
     <!-- Download Feedback Button -->
     <a href="{{ url_for('download_feedback') }}">
-        <button>Download Feedback (Excel)</button>
+        <button class="download-btn">Download Feedback</button>
     </a>
 
+    <!-- Loading Animation -->
+    <div id="loadingAnimation" class="loading-animation" style="display: none;">
+        <span>Analyzing...</span>
+        <div class="spinner"></div>
+    </div>
+
     <!-- Visual Analysis (Charts) -->
-    <div class="chart-container">
-        <h3>Visual Feedback Analysis</h3>
-        <div>
+    <div class="chart-container" id="analysisContainer" style="display: none;">
+        <div class="chart-item">
+            <h3>Visual Feedback Analysis</h3>
             <canvas id="feedbackChart"></canvas>
         </div>
-
-        <!-- Positive vs Negative Feedback Chart -->
-        <h3>Positive vs Negative Feedback</h3>
-        <div>
+        <div class="chart-item">
+            <h3>Positive vs Negative Feedback</h3>
             <canvas id="positiveNegativeChart"></canvas>
+        </div>
+        <div class="chart-item">
+            <h3>Feedback Distribution</h3>
+            <canvas id="ratingDistributionChart"></canvas>
         </div>
     </div>
 </div>
@@ -87,6 +99,38 @@
                 borderWidth: 1
             }]
         }
+    });
+
+    // Feedback Rating Distribution Chart
+    var ctx3 = document.getElementById('ratingDistributionChart').getContext('2d');
+    var ratingDistributionChart = new Chart(ctx3, {
+        type: 'doughnut',
+        data: {
+            labels: ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'],
+            datasets: [{
+                data: [{{ feedback_data["rating_1"] }}, {{ feedback_data["rating_2"] }}, {{ feedback_data["rating_3"] }}, {{ feedback_data["rating_4"] }}, {{ feedback_data["rating_5"] }}],
+                backgroundColor: ['#FF0000', '#FF7F00', '#FFCC00', '#99CC00', '#009900'],
+                borderWidth: 1
+            }]
+        }
+    });
+
+    // Show Analysis Button Functionality
+    document.getElementById("showAnalysisBtn").addEventListener("click", function() {
+        // Hide the button
+        this.style.display = "none";
+
+        // Show loading animation
+        document.getElementById("loadingAnimation").style.display = "flex";
+
+        // Simulate the analysis processing with a delay
+        setTimeout(function() {
+            // Hide the loading animation
+            document.getElementById("loadingAnimation").style.display = "none";
+
+            // Show the analysis results
+            document.getElementById("analysisContainer").style.display = "flex";
+        }, 3000); // 3 seconds delay
     });
 </script>
 

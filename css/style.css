@@ -579,7 +579,7 @@ nav .navigation ul li a:hover
 /*------------- Experts section styling starts ----------*/
 
 #experts {
-    padding: 5vw 8vw;
+    padding: 4vw 8vw;
     text-align: center;
     background: #f9f9f9;
     color: #333;
@@ -931,7 +931,7 @@ footer .copyright .pro-links i:hover
 /*---------------------------------------------------------*/
 /*-------------------- small screen styling ----------------*/
 /*---------------------------------------------------------*/
-@media screen and (max-width: 789px)
+/* @media screen and (max-width: 789px)
 {
 	nav
 	{
@@ -1057,4 +1057,114 @@ footer .copyright .pro-links i:hover
 		justify-content: space-evenly;
 		margin-top: 20px;
 	}
+} */
+
+/* General Responsive Styles */
+@media screen and (max-width: 768px) {
+    /* Adjust navigation for tablets */
+    nav .navigation ul {
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: -220px;
+        width: 220px;
+        height: 100vh;
+        background: rgba(17, 20, 104, 0.45);
+        backdrop-filter: blur(4.5px);
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        transition: 0.3s ease-in;
+    }
+
+    nav .navigation ul.active {
+        right: 0;
+    }
+
+    nav .navigation ul li {
+        padding: 20px 0 20px 40px;
+        margin-left: 0;
+    }
+
+    nav .navigation ul li a {
+        color: #fff;
+    }
+
+    /* Adjust hero section for tablets */
+    #home {
+        padding: 0px;
+    }
+
+    #home p {
+        width: 90%;
+    }
+
+    /* Adjust features section for tablets */
+    #features {
+        padding: 8vw 4vw 0 4vw;
+    }
+
+    /* Adjust courses section for tablets */
+    #course {
+        padding: 8vw 4vw 8vw 4vw;
+    }
+
+    /* Adjust registration section for tablets */
+    #registration {
+        padding: 6vw 4vw 6vw 4vw;
+        gap: 2.2rem;
+    }
+
+    /* Adjust experts section for tablets */
+    #experts {
+        padding: 8vw 4vw 6vw 4vw;
+    }
+
+    /* Adjust footer for tablets */
+    footer .copyright .pro-links {
+        margin-top: 20px;
+    }
+}
+
+@media screen and (max-width: 475px) {
+    /* Adjust registration section for mobile */
+    #registration {
+        flex-direction: column;
+    }
+
+    .reminder p, .reminder h1 {
+        text-align: center;
+    }
+
+    .reminder h1 {
+        font-size: 1.8rem;
+    }
+
+    #registration .reminder .time {
+        justify-content: space-evenly;
+        margin-top: 20px;
+    }
+
+    /* Adjust contact section for mobile */
+    #contact {
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    #contact .getin {
+        width: 100%;
+        margin-bottom: 30px;
+    }
+
+    #contact .form {
+        width: 100%;
+        padding: 40px 30px;
+    }
+
+    #contact .form .form-row {
+        flex-direction: column;
+    }
+
+    #contact .form .form-row input {
+        width: 100%;
+    }
 }

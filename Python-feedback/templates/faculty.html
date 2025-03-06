@@ -7,13 +7,16 @@
 <div class="feedback-management-container">
     <h2>Manage Feedback Questions</h2>
 
-    <!-- Form for adding, updating, or deleting questions -->
+    <!-- Form for adding, updating, or deleting a question -->
     <form method="POST" action="{{ url_for('faculty_home') }}">
         <label for="question">Question:</label>
-        <input type="text" name="question" id="question" required>
+        <input type="text" name="question" id="question" required placeholder="Enter new question" value="{{ request.form['question'] if request.method == 'POST' else '' }}">
+
+        <!-- Hidden field for update -->
+        <input type="hidden" name="old_question" id="old_question">
 
         <label for="new_question">New Question (for update only):</label>
-        <input type="text" name="new_question">
+        <input type="text" name="new_question" id="new_question" placeholder="Enter updated question" value="{{ request.form['new_question'] if request.method == 'POST' else '' }}">
 
         <label for="action">Action:</label>
         <select name="action" required>
@@ -28,9 +31,31 @@
     <h3>Your Current Questions:</h3>
     <ul>
         {% for question in questions %}
-            <li>{{ question["question"] }}</li>
+            <li>
+                <span>{{ question["question"] }}</span>
+                <div class="actions">
+                    <!-- Update Button (sets the current question for update) -->
+                    <button class="edit-btn" onclick="populateUpdateForm('{{ question['question'] }}')">edit</button>
+                    
+                    <!-- Delete Button -->
+                    <form method="POST" action="{{ url_for('faculty_home') }}" style="display:inline;">
+                        <input type="hidden" name="question" value="{{ question['question'] }}">
+                        <input type="hidden" name="action" value="delete">
+                        <button type="submit" class="delete-btn">Delete</button>
+                    </form>
+                </div>
+            </li>
         {% endfor %}
     </ul>
 </div>
+
+<script>
+    // Populate the form with the question to be updated
+    function populateUpdateForm(question) {
+        document.getElementById('question').value = question;
+        document.getElementById('old_question').value = question;
+        document.getElementById('new_question').focus();
+    }
+</script>
 
 {% endblock %}

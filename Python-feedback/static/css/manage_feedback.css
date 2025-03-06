@@ -7,88 +7,152 @@
 
 /* Container for the feedback management section */
 .feedback-management-container {
-    padding: 20px;
+    padding: 30px;
     background-color: #f9f9f9;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 80px;  /* Adjust this value based on the height of your navbar */
 }
 
 /* Title for the page */
 h2 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     color: #333;
     margin-bottom: 20px;
+    font-weight: 700;
 }
 
 /* Form Styling */
 form {
     background-color: #fff;
-    padding: 20px;
+    padding: 25px;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     margin-bottom: 30px;
 }
 
+.form-group {
+    margin-bottom: 20px;
+}
+
 label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     color: #555;
-    margin: 10px 0;
+    margin-bottom: 8px;
     display: block;
 }
 
 input, select {
     width: 100%;
-    padding: 10px;
-    margin: 5px 0 15px 0;
+    padding: 12px;
+    margin-top: 8px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
+    background-color: #fafafa;
 }
 
 button {
-    background-color: #4CAF50;
+    background-color: rgb(144, 205, 119);
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 12px 25px;
     cursor: pointer;
     border-radius: 5px;
-    font-size: 1rem;
+    font-size: 1.1rem;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
+    width: 100%;
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: rgb(83, 120, 68);
 }
 
 /* Current Questions List */
 h3 {
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     color: #333;
     margin-bottom: 15px;
 }
 
 ul {
     list-style-type: none;
+    padding: 0;
 }
 
 li {
-    padding: 10px;
-    border-bottom: 1px solid #ddd;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fff;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
     font-size: 1.2rem;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-li:last-child {
-    border-bottom: none;
+li span {
+    flex: 1;
+    color: #555;
+}
+
+.actions {
+    text-align: center;  
+}
+
+/* Edit and Delete Button Styles */
+.edit-btn, .delete-btn {
+    background-color: rgb(144, 205, 119);  
+    color: white;
+    border: none;
+    padding: 10px 20px;  
+    font-size: 1rem;  
+    border-radius: 5px;  
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease; 
+    display: inline-block; 
+    margin: 5px;  
+    width: auto;  
+    text-align: center; 
+}
+
+/* Optional: Disabled state for buttons */
+.edit-btn:disabled, .delete-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+.edit-btn:hover {
+    background-color: rgb(83, 120, 68);
+}
+
+.delete-btn {
+    background-color: #f16056;
+}
+
+.delete-btn:hover {
+    background-color: #e53935;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
     .feedback-management-container {
         padding: 15px;
+        margin-top: 70px; /* Adjust for smaller screens if navbar height is different */
     }
 
     input, select, button {
         font-size: 0.9rem;
+    }
+
+    .actions {
+        flex-direction: column;
     }
 }
